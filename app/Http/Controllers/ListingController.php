@@ -45,6 +45,8 @@ class ListingController extends Controller
             'email' => ['required', 'email', Rule::unique('listings', 'email')],
         ]);
 
+        $formFields['user_id'] = auth()->id();
+
         if ($request->hasFile('logo')) {
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
@@ -91,5 +93,11 @@ class ListingController extends Controller
         $listing->delete();
 
         return redirect('/')->with('message', 'Listing deleted');
+    }
+
+    // show manage listings
+    public function manage()
+    {
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 }
