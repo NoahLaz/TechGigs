@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Listing extends Model
 {
-    protected $fillable = ["title", "description", "location", "company", "tags", "website", "email"];
+    protected $fillable = ["title", "description", "location", "company", "tags", "website", "email", "logo"];
 
     use HasFactory;
 
